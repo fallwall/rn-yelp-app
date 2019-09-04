@@ -1,26 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import SearchBar from '../components/SearchBar';
-import api from '../services/api';
+import useResults from '../hooks/useResults';
 
 const SearchScreen = () => {
   const [term, setTerm] = useState('');
-  const [results, setResults] = useState([]);
-  const [errorMessage, setErrorMessage] = useState('');
-  const searchApi = async (searchTerm) => {
-    try {
-      const resp = await api.get('/search', {
-        params: {
-          term: searchTerm,
-          location: 'New York',
-          limit: 50,
-        },
-      });
-      setResults(resp.data.businesses);
-    } catch (err) {
-      setErrorMessage('not right!!');
-    }
-  };
+  const [searchApi, results, errorMessage] = useResults();
 
   return (
     <View>
@@ -31,7 +16,7 @@ const SearchScreen = () => {
         onTermSubmit={()=>searchApi(term)}
       />
       <Text>We have found {results.length} results</Text>
-      <Text>{errorMessage}</Text>
+      {errorMessage ? <Text>{errorMessage}</Text> : null}
     </View>
   );
 };
