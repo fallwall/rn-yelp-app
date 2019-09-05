@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
-import ResultsDetail from './ResultsDetail';
 import { withNavigation } from 'react-navigation';
+import ResultsDetail from './ResultsDetail';
 
 const ResultList = ({ title, results, navigation }) => {
   if (!results.length) {
