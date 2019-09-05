@@ -14,7 +14,6 @@ const SearchScreen = () => {
 
   return (
     <>
-      <Text>Search Screen</Text>
       <SearchBar
         term={term}
         onTermChange={setTerm}
