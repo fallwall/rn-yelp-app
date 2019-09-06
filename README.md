@@ -2,4 +2,5 @@
 
 
 ### Search Screen
-![outcome](https://i.imgur.com/L0jdnk1.jpg)
+![outcome](https://i.imgur.com/cb6v3go.jpg)
+![outcome2](https://i.imgur.com/oqt42Gd.jpg)

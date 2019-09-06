@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Image, View, Text, StyleSheet, FlatList, Linking, TouchableOpacity } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 import api from '../services/api';
 
 const ResultsShowScreen = ({ navigation }) => {
@@ -24,13 +25,25 @@ const ResultsShowScreen = ({ navigation }) => {
     <View>
       <Text style={styles.name}>{result.name}</Text>
       <View style={styles.phone}>
+        <MaterialCommunityIcons name='food' style={styles.iconStyle} />
+        <View style={styles.cat}>
+          <FlatList
+            data={result.categories}
+            keyExtractor={(item) => item}
+            renderItem={({ item }) =>
+              <Text style={styles.text}>{item.title} </Text>
+            }
+          />
+        </View>
+      </View>
+      <View style={styles.phone}>
         <FontAwesome name='mobile-phone' style={styles.iconStyle} />
         <Text style={styles.text}>{result.phone}</Text>
       </View>
       <TouchableOpacity
         onPress={() => {
           console.log('add link clicked!!');
-          Linking.openURL(`https://www.google.com/maps/search/?api=1&query=${result.coordinates.latitude}+${result.coordinates.longitude}`)
+          Linking.openURL(`https://www.google.com/maps/search/?api=1&query=${result.coordinates.latitude},${result.coordinates.longitude}`)
         }
         }>
         <View
@@ -78,6 +91,9 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 20,
     alignSelf: 'center',
+  },
+  cat: {
+    flexDirection: 'row',
   },
 });
 
